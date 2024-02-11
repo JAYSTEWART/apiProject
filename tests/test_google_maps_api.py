@@ -18,16 +18,12 @@ class Test_create_place():
         place_id = check_post.get('place_id')
         Cheking.check_status_code(result_post, 200)
         Cheking.check_json_token(result_post, ['status', 'place_id', 'scope', 'reference', 'id'])
-        # token = json.loads(result_post.text)
-        # print(list(token))
         Cheking.check_json_value(result_post, 'status', 'OK')
 
         print('Метод Get')
         result_get = Google_maps_api.get_new_place(place_id)
         Cheking.check_status_code(result_get, 200)
         Cheking.check_json_token(result_get, ['location', 'accuracy', 'name', 'phone_number', 'address', 'types', 'website', 'language'])
-        # token = json.loads(result_get.text)
-        # print(list(token))
         Cheking.check_json_value(result_get, 'accuracy', '50')
 
         print('Метод Put')
